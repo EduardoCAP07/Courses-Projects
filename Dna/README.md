@@ -1,55 +1,122 @@
-In a file called dna.py in a folder called dna, implement a program that identifies to whom a sequence of DNA belongs.
+# 🧬 DNA Profiling (CS50)
 
-# DNA Profiling with STRs
+This project is part of Harvard's CS50 course and focuses on DNA
+identification using **Short Tandem Repeats (STRs)**.
 
-## 🧬 What is DNA?
+## 📌 Overview
 
-DNA is a sequence of molecules called **nucleotides**, arranged in a double helix structure.  
-Each nucleotide contains one of four bases:
+DNA is made up of sequences of nucleotides represented by the letters:
 
-- Adenine (A)
-- Cytosine (C)
-- Guanine (G)
-- Thymine (T)
+-   A (Adenine)
+-   C (Cytosine)
+-   G (Guanine)
+-   T (Thymine)
 
-Every human cell contains **billions of nucleotides** arranged in sequence.
+Certain regions of DNA contain **Short Tandem Repeats (STRs)** --- short
+sequences that repeat multiple times.\
+The number of repetitions varies between individuals, making STRs useful
+for identification.
 
-Some parts of DNA are very similar across humans, while others vary significantly.
+------------------------------------------------------------------------
 
----
+## 🎯 Objective
 
-## 🔁 Short Tandem Repeats (STRs)
+The goal of this program is to:
 
-**Short Tandem Repeats (STRs)** are short sequences of DNA that repeat consecutively.
+1.  Read a DNA sequence
+2.  Analyze STR patterns
+3.  Compare results with a database
+4.  Identify the individual OR return `No match`
 
-Example:
-- STR: `AGAT`
-- Alice: `AGAT` repeated 4 times
-- Bob: `AGAT` repeated 5 times
+------------------------------------------------------------------------
 
-The number of repeats varies between individuals, making STRs useful for identification.
+## 📂 Project Structure
 
----
+    .
+    ├── dna.py
+    ├── databases/
+    │   ├── small.csv
+    │   └── large.csv
+    ├── sequences/
+    │   ├── sequence1.txt
+    │   └── sequence2.txt
+    └── README.md
 
-## 🎯 Why Use Multiple STRs?
+------------------------------------------------------------------------
 
-Using multiple STRs improves accuracy.
+## 🗃️ Database Format
 
-- Probability of matching 1 STR: ~5%
-- Probability of matching 10 STRs: ~1 in 1 quadrillion
+The database is a CSV file structured like this:
 
-This assumes STRs are independent.
-
-Real-world systems like **CODIS (FBI DNA database)** use **20 STRs**.
-
----
-
-## 🗃️ DNA Database Format
-
-A DNA database can be represented as a CSV file:
-
-```csv
+``` csv
 name,AGAT,AATG,TATC
 Alice,28,42,14
 Bob,17,22,19
 Charlie,36,18,25
+```
+
+------------------------------------------------------------------------
+
+## 🔍 How It Works
+
+1.  The program scans the DNA sequence
+2.  Finds the **longest consecutive run** of each STR
+3.  Compares the counts with each person in the database
+4.  Outputs the matching name
+
+### Example:
+
+If the sequence contains:
+
+-   AGAT → 17 repeats\
+-   AATG → 22 repeats\
+-   TATC → 19 repeats
+
+✅ Output:
+
+    Bob
+
+If no match is found:
+
+❌ Output:
+
+    No match
+
+------------------------------------------------------------------------
+
+## ▶️ How to Run
+
+Make sure you have Python installed.
+
+``` bash
+python dna.py databases/small.csv sequences/sequence1.txt
+```
+
+------------------------------------------------------------------------
+
+## 🧠 Key Concepts
+
+-   String processing
+-   Pattern matching
+-   CSV file handling
+-   Dictionaries and lists
+-   Algorithms for sequence analysis
+
+------------------------------------------------------------------------
+
+## ⚠️ Academic Honesty
+
+This repository contains my personal solutions to CS50 problem sets.
+
+Please do not copy this code directly.\
+Use it for learning and reference only.
+
+------------------------------------------------------------------------
+
+## 🚀 Future Improvements
+
+-   Add visualization of STR matches
+-   Optimize search performance
+-   Build a simple UI for input/output
+
+------------------------------------------------------------------------
