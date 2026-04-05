@@ -38,8 +38,10 @@ The goal of this program is to:
     │   ├── small.csv
     │   └── large.csv
     ├── sequences/
-    │   ├── sequence1.txt
-    │   └── sequence2.txt
+    │   ├── 1.txt
+    │   ├── 2.txt
+    |   ├── ... .txt
+    |   └── 20.txt
     └── README.md
 
 ------------------------------------------------------------------------
