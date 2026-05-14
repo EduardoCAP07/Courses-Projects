@@ -1,36 +1,36 @@
-# 🧬 DNA Profiling (CS50)
+# 🧬 Perfil de DNA (CS50)
 
-This project is part of Harvard's CS50 course and focuses on DNA
-identification using **Short Tandem Repeats (STRs)**.
+Este projeto faz parte do curso CS50 de Harvard e tem como foco a
+identificação de DNA usando **Repetições Curtas em Tandem (STRs)**.
 
-## 📌 Overview
+## 📌 Visão Geral
 
-DNA is made up of sequences of nucleotides represented by the letters:
+O DNA é composto por sequências de nucleotídeos representados pelas letras:
 
--   A (Adenine)
--   C (Cytosine)
--   G (Guanine)
--   T (Thymine)
+-   A (Adenina)
+-   C (Citosina)
+-   G (Guanina)
+-   T (Timina)
 
-Certain regions of DNA contain **Short Tandem Repeats (STRs)** --- short
-sequences that repeat multiple times.\
-The number of repetitions varies between individuals, making STRs useful
-for identification.
-
-------------------------------------------------------------------------
-
-## 🎯 Objective
-
-The goal of this program is to:
-
-1.  Read a DNA sequence
-2.  Analyze STR patterns
-3.  Compare results with a database
-4.  Identify the individual OR return `No match`
+Certas regiões do DNA contêm **Repetições Curtas em Tandem (STRs)** --- sequências
+curtas que se repetem várias vezes.\
+O número de repetições varia entre indivíduos, tornando as STRs úteis
+para identificação.
 
 ------------------------------------------------------------------------
 
-## 📂 Project Structure
+## 🎯 Objetivo
+
+O objetivo deste programa é:
+
+1.  Ler uma sequência de DNA
+2.  Analisar padrões de STR
+3.  Comparar os resultados com um banco de dados
+4.  Identificar o indivíduo OU retornar `Nenhuma correspondência`
+
+------------------------------------------------------------------------
+
+## 📂 Estrutura do Projeto
 
     .
     ├── dna.py
@@ -46,49 +46,49 @@ The goal of this program is to:
 
 ------------------------------------------------------------------------
 
-## 🗃️ Database Format
+## 🗃️ Formato do Banco de Dados
 
-The database is a CSV file structured like this:
+O banco de dados é um arquivo CSV estruturado assim:
 
 ``` csv
-name,AGAT,AATG,TATC
+nome,AGAT,AATG,TATC
 Alice,28,42,14
 Bob,17,22,19
-Charlie,36,18,25
+Carlos,36,18,25
 ```
 
 ------------------------------------------------------------------------
 
-## 🔍 How It Works
+## 🔍 Como Funciona
 
-1.  The program scans the DNA sequence
-2.  Finds the **longest consecutive run** of each STR
-3.  Compares the counts with each person in the database
-4.  Outputs the matching name
+1.  O programa varre a sequência de DNA
+2.  Encontra a **maior sequência consecutiva** de cada STR
+3.  Compara as contagens com cada pessoa no banco de dados
+4.  Exibe o nome correspondente
 
-### Example:
+### Exemplo:
 
-If the sequence contains:
+Se a sequência contém:
 
--   AGAT → 17 repeats\
--   AATG → 22 repeats\
--   TATC → 19 repeats
+-   AGAT → 17 repetições\
+-   AATG → 22 repetições\
+-   TATC → 19 repetições
 
-✅ Output:
+✅ Saída:
 
     Bob
 
-If no match is found:
+Se nenhuma correspondência for encontrada:
 
-❌ Output:
+❌ Saída:
 
-    No match
+    Nenhuma correspondência
 
 ------------------------------------------------------------------------
 
-## ▶️ How to Run
+## ▶️ Como Executar
 
-Make sure you have Python installed.
+Certifique-se de ter o Python instalado.
 
 ``` bash
 python dna.py databases/small.csv sequences/sequence1.txt
@@ -96,29 +96,29 @@ python dna.py databases/small.csv sequences/sequence1.txt
 
 ------------------------------------------------------------------------
 
-## 🧠 Key Concepts
+## 🧠 Conceitos-Chave
 
--   String processing
--   Pattern matching
--   CSV file handling
--   Dictionaries and lists
--   Algorithms for sequence analysis
-
-------------------------------------------------------------------------
-
-## ⚠️ Academic Honesty
-
-This repository contains my personal solutions to CS50 problem sets.
-
-Please do not copy this code directly.\
-Use it for learning and reference only.
+-   Processamento de strings
+-   Correspondência de padrões
+-   Manipulação de arquivos CSV
+-   Dicionários e listas
+-   Algoritmos para análise de sequências
 
 ------------------------------------------------------------------------
 
-## 🚀 Future Improvements
+## ⚠️ Honestidade Acadêmica
 
--   Add visualization of STR matches
--   Optimize search performance
--   Build a simple UI for input/output
+Este repositório contém minhas soluções pessoais para os conjuntos de problemas do CS50.
+
+Por favor, não copie este código diretamente.\
+Use-o apenas para aprendizado e referência.
+
+------------------------------------------------------------------------
+
+## 🚀 Melhorias Futuras
+
+-   Adicionar visualização das correspondências de STR
+-   Otimizar o desempenho da busca
+-   Criar uma interface simples para entrada e saída
 
 ------------------------------------------------------------------------
