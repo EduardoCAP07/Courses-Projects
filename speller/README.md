@@ -1,35 +1,35 @@
-# 🔤 Speller (CS50)
+# 🔤 Verificador Ortográfico (CS50)
 
-This project is part of Harvard's CS50 course and focuses on building a
-fast **spell-checker** using a hash table data structure implemented in C.
+Este projeto faz parte do curso CS50 de Harvard e tem como foco a construção de um
+**verificador ortográfico** rápido usando uma estrutura de dados de tabela hash implementada em C.
 
-## 📌 Overview
+## 📌 Visão Geral
 
-The program reads a text file word by word and checks each one against a
-loaded dictionary, reporting any misspellings along with performance
-benchmarks for each operation.
+O programa lê um arquivo de texto palavra por palavra e verifica cada uma em relação a
+um dicionário carregado, reportando quaisquer erros ortográficos junto com benchmarks
+de desempenho para cada operação.
 
-The core challenge is implementing an efficient dictionary using:
+O principal desafio é implementar um dicionário eficiente usando:
 
--   A **hash table** for fast lookups
--   **Linked lists** to handle collisions
--   Manual **memory management** in C
-
----
-
-## 🎯 Objective
-
-The goal of this program is to:
-
-1.  Load a dictionary of words into a hash table
-2.  Read a text file word by word
-3.  Check each word against the dictionary
-4.  Report all misspelled words
-5.  Benchmark the time spent in each operation
+-   Uma **tabela hash** para buscas rápidas
+-   **Listas encadeadas** para tratar colisões
+-   **Gerenciamento manual de memória** em C
 
 ---
 
-## 📂 Project Structure
+## 🎯 Objetivo
+
+O objetivo deste programa é:
+
+1.  Carregar um dicionário de palavras em uma tabela hash
+2.  Ler um arquivo de texto palavra por palavra
+3.  Verificar cada palavra em relação ao dicionário
+4.  Reportar todas as palavras com erros ortográficos
+5.  Medir o tempo gasto em cada operação
+
+---
+
+## 📂 Estrutura do Projeto
 
     .
     ├── speller.c
@@ -47,9 +47,9 @@ The goal of this program is to:
 
 ---
 
-## 🗃️ Data Structure
+## 🗃️ Estrutura de Dados
 
-Each word is stored in a `node` inside a hash table with `456,977` buckets:
+Cada palavra é armazenada em um `node` dentro de uma tabela hash com `456.977` buckets:
 
 ```c
 typedef struct node
@@ -59,99 +59,99 @@ typedef struct node
 } node;
 ```
 
-Collisions are resolved with **chaining** — each bucket holds a linked list of nodes.
+As colisões são resolvidas com **encadeamento** — cada bucket contém uma lista encadeada de nós.
 
 ---
 
-## 🔍 How It Works
+## 🔍 Como Funciona
 
-1.  The program loads the dictionary into the hash table
-2.  Each word in the text file is hashed to a bucket
-3.  The linked list at that bucket is traversed for a match
-4.  Misspelled words are printed to the console
-5.  Benchmarks are reported for all four operations
+1.  O programa carrega o dicionário na tabela hash
+2.  Cada palavra do arquivo de texto é convertida em um índice de bucket via hash
+3.  A lista encadeada naquele bucket é percorrida em busca de uma correspondência
+4.  Palavras com erros ortográficos são exibidas no console
+5.  Os benchmarks são reportados para as quatro operações
 
-### Example:
+### Exemplo:
 
-If the text contains the word `"speling"`:
+Se o texto contém a palavra `"speling"`:
 
--   It gets hashed to a bucket index
--   The linked list at that bucket is traversed
--   No match is found
+-   Ela é convertida em um índice de bucket
+-   A lista encadeada naquele bucket é percorrida
+-   Nenhuma correspondência é encontrada
 
-❌ Output:
+❌ Saída:
 
     speling
 
-If the word `"spelling"` is checked:
+Se a palavra `"spelling"` é verificada:
 
--   It hashes to its bucket
--   `strcasecmp` finds a match in the linked list
+-   Ela é convertida em seu bucket
+-   `strcasecmp` encontra uma correspondência na lista encadeada
 
-✅ No output (word is correctly spelled)
+✅ Nenhuma saída (palavra está corretamente escrita)
 
 ---
 
-## ▶️ How to Run
+## ▶️ Como Executar
 
-Make sure you have `clang` and `make` installed.
+Certifique-se de ter `clang` e `make` instalados.
 
 ``` bash
 make speller
 ```
 
 ``` bash
-# Using the default large dictionary
+# Usando o dicionário grande padrão
 ./speller texts/alice.txt
 
-# Using a custom dictionary
+# Usando um dicionário personalizado
 ./speller dictionaries/small texts/alice.txt
 ```
 
-### Example Output:
+### Exemplo de Saída:
 
 ```
-MISSPELLED WORDS
+PALAVRAS COM ERROS ORTOGRÁFICOS
 
 foo
 baz
 
-WORDS MISSPELLED:     2
-WORDS IN DICTIONARY:  143091
-WORDS IN TEXT:        17756
-TIME IN load:         0.03
-TIME IN check:        0.04
-TIME IN size:         0.00
-TIME IN unload:       0.02
-TIME IN TOTAL:        0.09
+PALAVRAS COM ERRO:        2
+PALAVRAS NO DICIONÁRIO:   143091
+PALAVRAS NO TEXTO:        17756
+TEMPO EM load:            0.03
+TEMPO EM check:           0.04
+TEMPO EM size:            0.00
+TEMPO EM unload:          0.02
+TEMPO TOTAL:              0.09
 ```
 
 ---
 
-## 🧠 Key Concepts
+## 🧠 Conceitos-Chave
 
--   Hash tables and linked lists
--   Dynamic memory allocation (`malloc`, `free`)
--   File I/O in C
--   String manipulation and comparison
--   Recursive algorithms
--   Memory leak prevention with `valgrind`
-
----
-
-## ⚠️ Academic Honesty
-
-This repository contains my personal solution to a CS50 problem set.
-
-Please do not copy this code directly.\
-Use it for learning and reference only.
+-   Tabelas hash e listas encadeadas
+-   Alocação dinâmica de memória (`malloc`, `free`)
+-   Entrada e saída de arquivos em C
+-   Manipulação e comparação de strings
+-   Algoritmos recursivos
+-   Prevenção de vazamentos de memória com `valgrind`
 
 ---
 
-## 🚀 Future Improvements
+## ⚠️ Honestidade Acadêmica
 
--   Experiment with a better hash function to reduce collisions
--   Compare performance against a trie-based implementation
--   Add support for custom word lengths beyond 45 characters
+Este repositório contém minha solução pessoal para um conjunto de problemas do CS50.
+
+Por favor, não copie este código diretamente.\
+Use-o apenas para aprendizado e referência.
+
+---
+
+## 🚀 Melhorias Futuras
+
+-   Experimentar uma função hash melhor para reduzir colisões
+-   Comparar o desempenho com uma implementação baseada em trie
+-   Adicionar suporte para palavras com mais de 45 caracteres
 
 ---
