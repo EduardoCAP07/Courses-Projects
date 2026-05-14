@@ -1,124 +1,146 @@
-# 🧬 Perfil de DNA (CS50)
+# 🧬 Simulação de Herança de Tipo Sanguíneo (CS50)
 
-Este projeto faz parte do curso CS50 de Harvard e tem como foco a
-identificação de DNA usando **Repetições Curtas em Tandem (STRs)**.
+Este projeto faz parte do curso CS50 de Harvard e tem como foco simular
+como os tipos sanguíneos são herdados ao longo das gerações usando a
+linguagem de programação C.
+
+------------------------------------------------------------------------
 
 ## 📌 Visão Geral
 
-O DNA é composto por sequências de nucleotídeos representados pelas letras:
+O tipo sanguíneo de uma pessoa é determinado por **dois alelos** (diferentes formas
+de um gene):
 
--   A (Adenina)
--   C (Citosina)
--   G (Guanina)
--   T (Timina)
+-   A
+-   B
+-   O
 
-Certas regiões do DNA contêm **Repetições Curtas em Tandem (STRs)** --- sequências
-curtas que se repetem várias vezes.\
-O número de repetições varia entre indivíduos, tornando as STRs úteis
-para identificação.
+Cada indivíduo herda: - Um alelo da mãe - Um alelo
+do pai
+
+------------------------------------------------------------------------
+
+## 🧬 Combinações Possíveis de Tipo Sanguíneo
+
+Cada pessoa possui dois alelos, resultando nas seguintes combinações:
+
+-   OO
+-   OA
+-   OB
+-   AO
+-   AA
+-   AB
+-   BO
+-   BA
+-   BB
+
+------------------------------------------------------------------------
+
+## 👨‍👩‍👧 Regras de Herança
+
+Cada pai passa aleatoriamente **um dos seus dois alelos** para o filho.
+
+### Exemplo 1
+
+-   Pai 1: AO\
+-   Pai 2: BB
+
+Tipos sanguíneos possíveis para o filho: - AB - OB
+
+### Exemplo 2
+
+-   Pai 1: AO\
+-   Pai 2: OB
+
+Tipos sanguíneos possíveis para o filho: - AO - OB - AB - OO
 
 ------------------------------------------------------------------------
 
 ## 🎯 Objetivo
 
-O objetivo deste programa é:
+Escrever um programa em C que:
 
-1.  Ler uma sequência de DNA
-2.  Analisar padrões de STR
-3.  Comparar os resultados com um banco de dados
-4.  Identificar o indivíduo OU retornar `Nenhuma correspondência`
+1.  Simule uma árvore genealógica com um número definido de gerações
+2.  Atribua alelos de tipo sanguíneo a cada pessoa
+3.  Modele a herança dos pais para os filhos
+4.  Utilize alocação dinâmica de memória
 
 ------------------------------------------------------------------------
 
 ## 📂 Estrutura do Projeto
 
     .
-    ├── dna.py
-    ├── databases/
-    │   ├── small.csv
-    │   └── large.csv
-    ├── sequences/
-    │   ├── 1.txt
-    │   ├── 2.txt
-    │   ├── ... .txt
-    │   └── 20.txt
-    └── README.md
+    └── inheritance/
+        └── inheritance.c
 
 ------------------------------------------------------------------------
 
-## 🗃️ Formato do Banco de Dados
+## ⚙️ Detalhes de Implementação
 
-O banco de dados é um arquivo CSV estruturado assim:
+### 🔹 Função create_family
 
-``` csv
-nome,AGAT,AATG,TATC
-Alice,28,42,14
-Bob,17,22,19
-Carlos,36,18,25
-```
+-   Recebe um inteiro `generations` como entrada
+-   Aloca memória para cada pessoa usando `malloc`
+-   Retorna um ponteiro para a **geração mais jovem**
 
-------------------------------------------------------------------------
+### 🔹 Estrutura da Família
 
-## 🔍 Como Funciona
+-   Cada pessoa possui:
+    -   Dois alelos
+    -   Dois pais (ponteiros)
 
-1.  O programa varre a sequência de DNA
-2.  Encontra a **maior sequência consecutiva** de cada STR
-3.  Compara as contagens com cada pessoa no banco de dados
-4.  Exibe o nome correspondente
+### 🔹 Geração Mais Antiga
 
-### Exemplo:
+-   Os alelos são atribuídos aleatoriamente usando `random_allele`
+-   Os pais são definidos como `NULL`
 
-Se a sequência contém:
+### 🔹 Gerações Mais Jovens
 
--   AGAT → 17 repetições\
--   AATG → 22 repetições\
--   TATC → 19 repetições
-
-✅ Saída:
-
-    Bob
-
-Se nenhuma correspondência for encontrada:
-
-❌ Saída:
-
-    Nenhuma correspondência
+-   Cada pessoa:
+    -   Herda um alelo aleatoriamente de cada pai
+    -   Possui dois pais (ponteiros para outras structs `person`)
 
 ------------------------------------------------------------------------
 
 ## ▶️ Como Executar
 
-Certifique-se de ter o Python instalado.
+Compile o programa:
 
 ``` bash
-python dna.py databases/small.csv sequences/sequence1.txt
+gcc inheritance.c -o inheritance
+```
+
+Execute o programa:
+
+``` bash
+./inheritance
 ```
 
 ------------------------------------------------------------------------
 
 ## 🧠 Conceitos-Chave
 
--   Processamento de strings
--   Correspondência de padrões
--   Manipulação de arquivos CSV
--   Dicionários e listas
--   Algoritmos para análise de sequências
+-   Recursão (construção de árvores genealógicas)
+-   Alocação dinâmica de memória (`malloc`)
+-   Ponteiros e structs em C
+-   Geração de números aleatórios
+-   Simulação de genética do mundo real
 
 ------------------------------------------------------------------------
 
 ## ⚠️ Honestidade Acadêmica
 
-Este repositório contém minhas soluções pessoais para os conjuntos de problemas do CS50.
+Este repositório contém minha solução pessoal para um problema do CS50.
 
-Por favor, não copie este código diretamente.\
+Não copie este código diretamente.\
 Use-o apenas para aprendizado e referência.
 
 ------------------------------------------------------------------------
 
 ## 🚀 Melhorias Futuras
 
--   Adicionar visualização das correspondências de STR
--   Otimizar o desempenho da busca
--   Criar uma interface simples para entrada e saída
+-   Representação visual da árvore genealógica
+-   Tamanho de geração definido por entrada do usuário
+-   Controle aprimorado de aleatoriedade
 
 ------------------------------------------------------------------------
