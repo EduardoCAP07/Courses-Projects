@@ -1,146 +1,124 @@
-# 🧬 Blood Type Inheritance Simulation (CS50)
+# 🧬 Perfil de DNA (CS50)
 
-This project is part of Harvard's CS50 course and focuses on simulating
-how blood types are inherited across generations using the C programming
-language.
+Este projeto faz parte do curso CS50 de Harvard e tem como foco a
+identificação de DNA usando **Repetições Curtas em Tandem (STRs)**.
 
-------------------------------------------------------------------------
+## 📌 Visão Geral
 
-## 📌 Overview
+O DNA é composto por sequências de nucleotídeos representados pelas letras:
 
-A person's blood type is determined by **two alleles** (different forms
-of a gene):
+-   A (Adenina)
+-   C (Citosina)
+-   G (Guanina)
+-   T (Timina)
 
--   A
--   B
--   O
-
-Each individual inherits: - One allele from their mother - One allele
-from their father
-
-------------------------------------------------------------------------
-
-## 🧬 Possible Blood Type Combinations
-
-Each person has two alleles, leading to the following combinations:
-
--   OO
--   OA
--   OB
--   AO
--   AA
--   AB
--   BO
--   BA
--   BB
+Certas regiões do DNA contêm **Repetições Curtas em Tandem (STRs)** --- sequências
+curtas que se repetem várias vezes.\
+O número de repetições varia entre indivíduos, tornando as STRs úteis
+para identificação.
 
 ------------------------------------------------------------------------
 
-## 👨‍👩‍👧 Inheritance Rules
+## 🎯 Objetivo
 
-Each parent randomly passes **one of their two alleles** to their child.
+O objetivo deste programa é:
 
-### Example 1
-
--   Parent 1: AO\
--   Parent 2: BB
-
-Possible child blood types: - AB - OB
-
-### Example 2
-
--   Parent 1: AO\
--   Parent 2: OB
-
-Possible child blood types: - AO - OB - AB - OO
+1.  Ler uma sequência de DNA
+2.  Analisar padrões de STR
+3.  Comparar os resultados com um banco de dados
+4.  Identificar o indivíduo OU retornar `Nenhuma correspondência`
 
 ------------------------------------------------------------------------
 
-## 🎯 Objective
-
-Write a program in C that:
-
-1.  Simulates a family tree of a given number of generations
-2.  Assigns blood type alleles to each person
-3.  Models inheritance from parents to children
-4.  Uses dynamic memory allocation
-
-------------------------------------------------------------------------
-
-## 📂 Project Structure
+## 📂 Estrutura do Projeto
 
     .
-    └── inheritance/
-        └── inheritance.c
+    ├── dna.py
+    ├── databases/
+    │   ├── small.csv
+    │   └── large.csv
+    ├── sequences/
+    │   ├── 1.txt
+    │   ├── 2.txt
+    │   ├── ... .txt
+    │   └── 20.txt
+    └── README.md
 
 ------------------------------------------------------------------------
 
-## ⚙️ Implementation Details
+## 🗃️ Formato do Banco de Dados
 
-### 🔹 create_family Function
+O banco de dados é um arquivo CSV estruturado assim:
 
--   Takes an integer `generations` as input
--   Allocates memory for each person using `malloc`
--   Returns a pointer to the **youngest generation**
-
-### 🔹 Family Structure
-
--   Each person has:
-    -   Two alleles
-    -   Two parents (pointers)
-
-### 🔹 Oldest Generation
-
--   Alleles are assigned randomly using `random_allele`
--   Parents are set to `NULL`
-
-### 🔹 Younger Generations
-
--   Each person:
-    -   Inherits one allele randomly from each parent
-    -   Has two parents (pointers to other `person` structs)
-
-------------------------------------------------------------------------
-
-## ▶️ How to Run
-
-Compile the program:
-
-``` bash
-gcc inheritance.c -o inheritance
-```
-
-Run the program:
-
-``` bash
-./inheritance
+``` csv
+nome,AGAT,AATG,TATC
+Alice,28,42,14
+Bob,17,22,19
+Carlos,36,18,25
 ```
 
 ------------------------------------------------------------------------
 
-## 🧠 Key Concepts
+## 🔍 Como Funciona
 
--   Recursion (building family trees)
--   Dynamic memory allocation (`malloc`)
--   Pointers and structs in C
--   Random number generation
--   Simulation of real-world genetics
+1.  O programa varre a sequência de DNA
+2.  Encontra a **maior sequência consecutiva** de cada STR
+3.  Compara as contagens com cada pessoa no banco de dados
+4.  Exibe o nome correspondente
+
+### Exemplo:
+
+Se a sequência contém:
+
+-   AGAT → 17 repetições\
+-   AATG → 22 repetições\
+-   TATC → 19 repetições
+
+✅ Saída:
+
+    Bob
+
+Se nenhuma correspondência for encontrada:
+
+❌ Saída:
+
+    Nenhuma correspondência
 
 ------------------------------------------------------------------------
 
-## ⚠️ Academic Honesty
+## ▶️ Como Executar
 
-This repository contains my personal solution to a CS50 problem.
+Certifique-se de ter o Python instalado.
 
-Do not copy this code directly.\
-Use it for learning and reference only.
+``` bash
+python dna.py databases/small.csv sequences/sequence1.txt
+```
 
 ------------------------------------------------------------------------
 
-## 🚀 Future Improvements
+## 🧠 Conceitos-Chave
 
--   Visual representation of the family tree
--   Input-based generation size
--   Enhanced randomness control
+-   Processamento de strings
+-   Correspondência de padrões
+-   Manipulação de arquivos CSV
+-   Dicionários e listas
+-   Algoritmos para análise de sequências
+
+------------------------------------------------------------------------
+
+## ⚠️ Honestidade Acadêmica
+
+Este repositório contém minhas soluções pessoais para os conjuntos de problemas do CS50.
+
+Por favor, não copie este código diretamente.\
+Use-o apenas para aprendizado e referência.
+
+------------------------------------------------------------------------
+
+## 🚀 Melhorias Futuras
+
+-   Adicionar visualização das correspondências de STR
+-   Otimizar o desempenho da busca
+-   Criar uma interface simples para entrada e saída
 
 ------------------------------------------------------------------------
